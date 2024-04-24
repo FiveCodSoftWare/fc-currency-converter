@@ -1,4 +1,4 @@
-# Currency Converter | (ALURA): Practicing with Java: Currency Converter Challenge
+# (ALURA): Practicing with Java: Currency Converter Challenge | Practicando con Java: Challenge Conversor de Monedas
 
 This is a simple currency converter application that allows you to perform various currency conversion operations. The application provides the following functionalities:
 
