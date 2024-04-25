@@ -22,14 +22,14 @@ public class CurrencyConversionApp {
     public void run() {
         currencyConverterService.fetchConversionRates();
         Scanner scanner = new Scanner(System.in);
-        int choice;
-
+        int option;
+        
         do {
             displayMenu();
-            choice = scanner.nextInt();
+            option = scanner.nextInt();
             scanner.nextLine();
 
-            switch (choice) {
+            switch (option) {
                 case 1:
                     try {
                         System.out.print("Enter the base currency code (e.g., USD, PEN, EUR, JPY): ");
@@ -187,7 +187,7 @@ public class CurrencyConversionApp {
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }
-        } while (choice != 12);
+        } while (option != 12);
     }
 
     private void displayMenu() {
