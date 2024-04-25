@@ -12,5 +12,4 @@ awk -v new_version="$NEW_VERSION" '/sonar.projectVersion/ {$0="sonar.projectVers
 echo "New version: $NEW_VERSION"
 
 # Export new version for GitHub Actions
-echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
-echo "::set-output name=new_version::$NEW_VERSION"
+echo "::set-env name=NEW_VERSION::$NEW_VERSION"
