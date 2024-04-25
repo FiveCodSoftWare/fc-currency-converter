@@ -10,3 +10,6 @@ NEW_VERSION=$(echo "$CURRENT_VERSION" | awk -F'.' '{$NF+=1; OFS="."; print $0}')
 sed -i "s/sonar.projectVersion=.*/sonar.projectVersion=$NEW_VERSION/" sonar-project.properties
 
 echo "New versión: $NEW_VERSION"
+
+# Exportar la nueva versión al entorno de GitHub Actions
+echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
