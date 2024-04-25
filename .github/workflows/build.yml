@@ -3,22 +3,18 @@ on:
   push:
     branches:
       - main
+
 jobs:
-  build-and-analyze:
-    runs-on: [ ubuntu-latest ]
+  analyze:
+    runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Source
         uses: actions/checkout@v4
-      - name: Setup Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '21'
-      - name: Build Project
-        run: mvn clean install -DskipTests
+
       - name: SonarCloud Scan
         uses: sonarsource/sonarqube-scan-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: 'https://sonarcloud.io/'
+          SONAR_HOST_URL: 'https://sonarcloud.io'
