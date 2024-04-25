@@ -13,3 +13,4 @@ echo "New version: $NEW_VERSION"
 
 # Export new version for GitHub Actions
 echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
+echo "::set-output name=new_version::$NEW_VERSION"
