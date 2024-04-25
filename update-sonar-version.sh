@@ -4,7 +4,7 @@
 CURRENT_VERSION=$(grep 'sonar.projectVersion' sonar-project.properties | awk -F'=' '{print $2}')
 
 # Increment versión
-NEW_VERSION=$(echo "$CURRENT_VERSION" | awk -F'.' '{$NF+=1; OFS="."; print $0}')
+NEW_VERSION=$(echo "$CURRENT_VERSION" | awk -F'.' '{$NF+=1; OFS="."; print $0}' | tr -d '[:space:]')
 
 # UPDATE FILE sonar-project.properties
 sed -i "s/sonar.projectVersion=.*/sonar.projectVersion=$NEW_VERSION/g" sonar-project.properties
