@@ -1,15 +1,20 @@
 #!/bin/bash
 
-# LEANR VERSION FILE sonar-project.properties
+# LEER ARCHIVO DE VERSIÓN sonar-project.properties
 CURRENT_VERSION=$(awk -F'=' '/sonar.projectVersion/ {print $2}' sonar-project.properties)
 
-# Increment version
-NEW_VERSION=$(echo "$CURRENT_VERSION" | awk -F'.' '{$NF+=1; OFS="."; print $0}')
+# Incrementar versión
+IFS='.' read -ra VERSION_PARTS <<< "$CURRENT_VERSION"
+MAJOR="${VERSION_PARTS[0]}"
+MINOR="${VERSION_PARTS[1]}"
+PATCH="${VERSION_PARTS[2]}"
+PATCH=$((PATCH+1))
+NEW_VERSION="$MAJOR.$MINOR.$PATCH"
 
-# UPDATE FILE sonar-project.properties
+# ACTUALIZAR ARCHIVO sonar-project.properties
 awk -v new_version="$NEW_VERSION" '/sonar.projectVersion/ {$0="sonar.projectVersion="new_version} {print}' sonar-project.properties > temp && mv temp sonar-project.properties
 
-echo "New version: $NEW_VERSION"
+echo "Nueva versión: $NEW_VERSION"
 
-# Export new version for GitHub Actions
-echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
+# Exportar nueva versión para GitHub Actions
+echo "NUEVA_VERSION=$NEW_VERSION" >> $GITHUB_ENV
