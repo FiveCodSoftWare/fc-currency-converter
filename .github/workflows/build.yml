@@ -26,7 +26,7 @@ jobs:
           
       - name: Commit and push changes
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN  }}
           NEW_VERSION: ${{ env.NUEVA_VERSION }}
         run: |
           git config --global user.name 'GitHub Actions Bot'
