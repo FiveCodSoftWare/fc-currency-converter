@@ -1,5 +1,4 @@
 name: Sonar Scan
-
 on:
   push:
     branches:
@@ -16,7 +15,7 @@ jobs:
       - name: Update Sonar Project Version
         run: |
           chmod +x update-sonar-version.sh
-          ./update-sonar-version.sh
+          ./update-sonar-version.sh  
 
       - name: SonarCloud Scan
         uses: sonarsource/sonarqube-scan-action@master
@@ -24,13 +23,3 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: 'https://sonarcloud.io'
-
-      - name: Commit and push changes
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git config --global user.name 'GitHub Actions Bot'
-          git config --global user.email 'actions@github.com'
-          git add sonar-project.properties
-          git commit -m "Actualizar versión del proyecto a ${{ env.NEW_VERSION }}"
-          git push "https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" HEAD:main
