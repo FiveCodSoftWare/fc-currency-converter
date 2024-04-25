@@ -7,7 +7,7 @@ CURRENT_VERSION=$(grep 'sonar.projectVersion' sonar-project.properties | awk -F'
 NEW_VERSION=$(echo "$CURRENT_VERSION" | awk -F'.' '{$NF+=1; OFS="."; print $0}')
 
 # UPDATE FILE sonar-project.properties
-sed -i "s/sonar.projectVersion=.*/sonar.projectVersion='$NEW_VERSION'/g" sonar-project.properties
+sed -i "s/sonar.projectVersion=.*/sonar.projectVersion=$NEW_VERSION/g" sonar-project.properties
 
 echo "New versión: $NEW_VERSION"
 
